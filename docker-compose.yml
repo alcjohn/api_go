@@ -7,3 +7,20 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
+  db:
+    image: postgres:10
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      PGDATA: /data/postgres
+      POSTGRES_DB: docker
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres:/data/postgres
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+volumes:
+  postgres:
