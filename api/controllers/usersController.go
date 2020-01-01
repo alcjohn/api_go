@@ -20,7 +20,7 @@ func (server *Server) GetUsers(w http.ResponseWriter, r *http.Request) {
 	responses.JSON(w, http.StatusOK, users)
 }
 
-func (server *Server) CreateUser(w http.ResponseWriter, r *http.Request)  {
+func (server *Server) CreateUser(w http.ResponseWriter, r *http.Request) {
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		responses.ERROR(w, http.StatusUnprocessableEntity, err)
@@ -43,7 +43,7 @@ func (server *Server) CreateUser(w http.ResponseWriter, r *http.Request)  {
 	}
 	userCreated, err := user.SaveUser(server.DB)
 
-	if err != nil{
+	if err != nil {
 		responses.ERROR(w, http.StatusInternalServerError, err)
 		return
 	}

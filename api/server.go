@@ -26,7 +26,7 @@ func Run() {
 		os.Getenv("DB_PORT"),
 		os.Getenv("DB_HOST"),
 		os.Getenv("DB_NAME"),
-		)
+	)
 
 	server.Run(":8000")
 }
