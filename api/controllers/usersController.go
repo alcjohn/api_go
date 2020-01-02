@@ -33,12 +33,9 @@ func (server *Server) CreateUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	user.Prepare()
-	ok, err := govalidator.ValidateStruct(&user)
+	_ , err = govalidator.ValidateStruct(&user)
 	if err != nil {
 		responses.ERROR(w, http.StatusInternalServerError, err)
-		return
-	}
-	if !ok {
 		return
 	}
 	userCreated, err := user.SaveUser(server.DB)
