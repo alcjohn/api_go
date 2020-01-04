@@ -13,12 +13,14 @@ import (
 )
 
 func CreateToken(uid uint32) (string, error) {
-	claims := jwt.MapClaims{}
+
+	token := jwt.New(jwt.SigningMethodHS256)
+	claims := token.Claims.(jwt.MapClaims)
 	claims["authorized"] = true
 	claims["user_id"] = uid
 	claims["exp"] = time.Now().Add(time.Hour * 1).Unix()
-	token := jwt.NewWithClaims(jwt.SigningMethodES256, claims)
 	return token.SignedString([]byte(os.Getenv("API_SECRET")))
+
 }
 
 func TokenValid(r *http.Request) error {
